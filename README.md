@@ -1,2 +1,2 @@
 # Ruten-Crawler
-A little crawler for the Biggest E-ommerse Site in Taiwan
+A little crawler for the Biggest E-commerce Site in Taiwan
