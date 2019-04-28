@@ -1,9 +1,13 @@
 language: python
+
 python:
-  - "3.5"
   - "3.6"
-# command to install dependencies
-  install: "pip install -U pip wheel && pip install -U cython && pip install -Ur requirements.txt"
-before_script: "flake8"
-# command to run tests
-script: python -m unittest
+
+install:
+  - pip install -U pip wheel setuptools
+  - pip install -U cython
+  - pip install -r requirements.txt
+
+script:
+  - make lint
+  - python -m unittest
