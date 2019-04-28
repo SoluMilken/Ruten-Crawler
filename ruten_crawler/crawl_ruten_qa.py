@@ -1,10 +1,8 @@
 import re
-import sys
 import os
 import json
-
-import ast
 import requests
+
 
 PROG = re.compile(r'.txt')
 PROG_ID = re.compile(r'http\:\/\/goods\.ruten\.com\.tw\/item\/show\?([0-9]+)')
@@ -47,7 +45,7 @@ def crawl_one_page(url, id_, page):
             'user-agent': 'MozillaOHOHOH',
             'content-type': 'application/json',
         },
-        cookies={'_ts_id':  '99'},
+        cookies={'_ts_id': '99'},
     )
 
     if req.status_code == 200:
@@ -59,10 +57,9 @@ def crawl_one_page(url, id_, page):
                     "w",
                     encoding='utf-8',
                 ) as filep:
-                    json.dump(data, filep, ensure_ascii=False, indent=2)
+                json.dump(data, filep, ensure_ascii=False, indent=2)
             return True
-    return False  
-            
+    return False
 
 
 def main():

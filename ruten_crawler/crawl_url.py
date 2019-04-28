@@ -1,9 +1,6 @@
 from os.path import join
-import 
 import requests
 from bs4 import BeautifulSoup
-
-def parser(
 
 
 def crawl_one_page(class_num: int, url: str, page: int, output_dir: str):
@@ -11,19 +8,19 @@ def crawl_one_page(class_num: int, url: str, page: int, output_dir: str):
     req = requests.get(
         page_url,
         headers={
-            'user-agent': 'Mozilla BABABA', 
+            'user-agent': 'Mozilla BABABA',
             'encoding': 'UTF-8',
         },
         cookies={
-            '_ts_id':  '999999999999999999', 
-            'adultchk': 'ok', #  for AdultOnly products
+            '_ts_id': '999999999999999999',
+            'adultchk': 'ok',  # for AdultOnly products
         },
     )
     if req.status_code == 200:
         soup = BeautifulSoup(req.text, 'html.parser')
         targets = soup.find_all('a', class_="item-name-anchor")
         if len(targets) > 0:
-            output= []
+            output = []
             for element in targets:
                 output.append(element['href'])
             with open(
@@ -45,7 +42,7 @@ def main():
                 class_num=num,
                 url=url,
                 page=page_num,
-                output_dir=
+                output_dir=f"./urls_{page_num}",
             )
             if not check:
                 break
